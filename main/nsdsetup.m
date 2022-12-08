@@ -324,7 +324,7 @@ dirs = { ...
 % 'DATECENSORED-NSD134-nsdsyntheticpilot'
 % 'DATECENSORED-NSD134-nsdimageryFAILED'
 
-% preprocessing scripts
+% 预处理脚本 preprocessing scripts
 projectnames = {'readingF' 'nsd'};
 projectnums = 2*ones(1,length(dirs));
 projectnums(1:6) = 1;
@@ -361,7 +361,7 @@ fsids(1:6) = repmat({'C1051'},[1 6]);
 allnsdidsNUM = [134 139 149 168 258 400 814 929];
 allnsdids = arrayfun(@(x) sprintf('NSD%d',x),allnsdidsNUM,'UniformOutput',0);
 
-% structural sessions directory names
+% 结构性会议目录名称 structural sessions directory names
 structuraldirs = {};
 for p=1:length(allnsdids)
   structuraldirs{p} = matchfiles(sprintf('/home/surly-raid1/kendrick-data/nsd/rawdata/*-%s-structural*',allnsdids{p}));
@@ -394,15 +394,15 @@ for p=1:length(nsdcropranges)
   nsdmatrixsizeLOW{p} = size(xx);
 end
 
-% which session index is the reference/synthetic/imagery for each subject?
+% 哪个会议索引是每个被试的参考/合成/图像？ which session index is the reference/synthetic/imagery for each subject?
 nsdrefsession = [23 21 28 31 27 24 22 25];
 nsdsyntheticsession = [303 312 305 317 304 311 316 306];
 nsdimagerysession = [310 314 315 318 309 313 319 320];
 
-% final nsd sessions
+% NSD最后一次会议  final nsd sessions
 totalnsdsessions = [40 40 32 30 40 32 40 30];
 
-% make session matrix (8 x 40 with index of the session dir)
+% 制作会议矩阵 make session matrix (8 x 40 with index of the session dir)
 sessmatrix = [];
 for p=1:length(dirs)
   temp = regexp(dirs{p},'.+-NSD(\d+)-nsd(\d+)','tokens');
@@ -412,7 +412,7 @@ for p=1:length(dirs)
   end
 end
 
-% make screening session matrix
+% 筛选会议矩阵 make screening session matrix
 screeningmatrix = [18 7 8 20 17 16 10 12];
 
 % more
@@ -530,9 +530,9 @@ epitrtweaks{309}(2) = 1.000821;
 epitrtweaks{309}(7) = 1.000604;
 
 % experiment information files
-nsdexpfile = '/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsd/nsd_expdesign.mat';
-nsdsyntheticexpfile = '/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsdsynthetic/nsdsynthetic_expdesign.mat';
-nsdimageryexpfile = cellfun(@(x) sprintf('/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsdimagery/%s_dm.mat',x),{'visA' 'attA' 'imgA_1' 'visB' 'attB' 'imgB_1' 'visC' 'attC' 'imgC_1' 'imgA_2' 'imgB_2' 'imgC_2'},'UniformOutput',0);
+nsdexpfile = '/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsd/nsd_expdesign.mat';  % /gpfs/milgram/data/nsd/nsddata/experiments/nsd/nsd_expdesign.mat
+nsdsyntheticexpfile = '/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsdsynthetic/nsdsynthetic_expdesign.mat';  % /gpfs/milgram/data/nsd/nsddata/experiments/nsdsynthetic/nsdsynthetic_expdesign.mat 不存在
+nsdimageryexpfile = cellfun(@(x) sprintf('/home/surly-raid4/kendrick-data/nsd/nsddata/experiments/nsdimagery/%s_dm.mat',x),{'visA' 'attA' 'imgA_1' 'visB' 'attB' 'imgB_1' 'visC' 'attC' 'imgC_1' 'imgA_2' 'imgB_2' 'imgC_2'},'UniformOutput',0);  % 不存在
 
 % any structurals to reject?
 rejectt1 = {[] [] [] [] [] [] [] [2 4]};
